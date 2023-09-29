@@ -64,8 +64,12 @@
             background-position: center;
             background-size: cover;
         }
+        .textdiv{
+            padding: 10px;
+            margin: 0;
+        }
         form{
-            height: 520px;
+            height: 550px;
             width: 400px;
             background-color: rgba(255,255,255,0.13);
             position: absolute;
@@ -164,9 +168,9 @@
             <div class="go"><i class="fab fa-google"></i>  Google</div>
             <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
         </div>
+        <div class="textdiv"><p>Already have a account? <a href="signup.php">SIGNUP Here</a></p></div>
     </form>
 </div>
 </div>
 </body>
 </html>
-

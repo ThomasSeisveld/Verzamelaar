@@ -164,9 +164,9 @@
             <div class="go"><i class="fab fa-google"></i>  Google</div>
             <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
         </div>
+        <div class="textdiv"><p>Already have a account? <a href="login.php.php">LOGIN Here</a></p></div>
     </form>
 </div>
 </div>
 </body>
 </html>
-
