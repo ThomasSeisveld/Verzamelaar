@@ -1,12 +1,12 @@
 <?php
 // connection
 $serverName = "localhost";
-$UserName = "db_089560";
-$Password = "db089560!";
-$DBName = "db_89560";
+$UserName = "ftp089560";
+$Password = "ftp089560";
+$DBName = "MainDBTho";
 
-$conn = mysqli_connect($serverName, $UserName, $Password, $DBName);
+$con = mysqli_connect($serverName, $UserName, $Password, $DBName);
 
-if (!$conn) {
+if (!$con) {
     die("Connection Failed : " . mysqli_connect_error());
 }

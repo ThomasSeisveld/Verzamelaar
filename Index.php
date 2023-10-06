@@ -1,6 +1,9 @@
 <?php
 session_start();
-    $_SESSION;
+global $con;
+include ("PHP/connect.php");
+include ("PHP/functions.php");
+$user_data = check_login($con);
 ?>
 <!DOCTYPE html>
 <html lang="en">

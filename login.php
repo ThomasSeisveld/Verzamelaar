@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
     <title>Collections CSGO</title>
     <link rel="icon" href="" type="image/icon type">
@@ -23,7 +21,7 @@
         }
         .bgimg
         {
-            background-image: url('../assets/images/login_request/17044886.jpg');
+            background-image: url('assets/images/login_request/17044886.jpg');
             min-height: 100%;
             background-position: center;
             background-size: cover;
