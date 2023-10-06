@@ -150,23 +150,22 @@
 </head>
 <body>
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-    <form>
-        <h3>Login Here</h3>
+    <form method="post">
+        <h3>Signup Here</h3>
 
         <label for="username">Username</label>
-        <input type="text" placeholder="Email or Phone" id="username">
+        <input type="text" placeholder="Email or Phone" name="user_name">
 
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password">
 
-        <button>Log In</button>
+        <input type="submit" value="Login" id="button">
         <div class="social">
             <div class="go"><i class="fab fa-google"></i>  Google</div>
             <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
         </div>
-        <div class="textdiv"><p>Already have a account? <a href="login.php.php">LOGIN Here</a></p></div>
+        <div class="textdiv"><p>Already have a account? <a href="signup.php">SIGNUP Here</a></p></div>
     </form>
-</div>
 </div>
 </body>
 </html>

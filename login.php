@@ -1,40 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Collections CSGO</title>
-    <link rel="icon" href="" type="image/icon type">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    <style media="screen">
-        body,h1
-        {
-            font-family: "Raleway", sans-serif
-        }
-        body, html
-        {
-            height: 100%;
-            background-color: rgb(28, 26, 26);
-            background-image: url('assets/images/login_request/17044886.jpg');
-            background-position: center;
-            background-size: cover;
-        }
-        .background{
-            background-image: url('assets/images/login_request/17044886.jpg');
-            min-height: 100%;
-
-        }
-
-
-    </style>
-</head>
-<body class="background">
-
-</body>
-</html>
-<!DOCTYPE html>
 
 <html>
 
@@ -127,6 +91,17 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        #button{
+            margin-top: 30px;
+            width: 100%;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 10px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
         .social{
             margin-top: 30px;
             display: flex;
@@ -154,23 +129,22 @@
 </head>
 <body>
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-    <form>
+    <form method="post">
         <h3>Login Here</h3>
 
         <label for="username">Username</label>
-        <input type="text" placeholder="Email or Phone" id="username">
+        <input type="text" placeholder="Email or Phone" name="user_name">
 
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password">
 
-        <button>Log In</button>
+        <input type="submit" value="Login" id="button">
         <div class="social">
             <div class="go"><i class="fab fa-google"></i>  Google</div>
             <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
         </div>
         <div class="textdiv"><p>Already have a account? <a href="signup.php">SIGNUP Here</a></p></div>
     </form>
-</div>
 </div>
 </body>
 </html>
