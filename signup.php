@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
         }
         .bgimg
         {
-            background-image: url('assets/images/login_request/17044886.jpg');
+            background-image: url('assets/images/login_request/wp2516222.jpg');
             min-height: 100%;
             background-position: center;
             background-size: cover;
@@ -169,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
             <div class="go"><i class="fab fa-google"></i>  Google</div>
             <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
         </div>
-        <div class="textdiv"><p>Already have a account? <a href="signup.php">Login Here</a></p></div>
+        <div class="textdiv"><p>Already have a account? <a href="login.php">Login Here</a></p></div>
     </form>
 </div>
 </body>
