@@ -7,23 +7,43 @@ include ("PHP/functions.php");
 if ($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $user_name = $_POST['user_name'];
+    $email = strtolower($_POST['email']); // Converteer naar kleine letters
     $password = $_POST['password'];
+    $role = 0;
 
-    if (!empty($user_name) && !empty($password) && !is_numeric($user_name))
-    {
-        $user_id = random_num(20);
-        $query = "insert into users (user_id, user_name, password) values ('$user_id','$user_name','$password')";
+    // Eerst controleren of het e-mailadres een geldig formaat heeft
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        // Controleren of het e-mailadres al in gebruik is
+        $check_query = "SELECT * FROM users WHERE email='$email'";
+        $result = mysqli_query($con, $check_query);
 
-        mysqli_query($con, $query);
+        if (mysqli_num_rows($result) == 0) {
+            // Controleren of het wachtwoord minimaal 6 karakters heeft
+            if (strlen($password) >= 6) {
+                // Als het een geldig e-mailadres is en niet al in gebruik is, en het wachtwoord voldoet aan de eis, doorgaan met de rest van de validatie
+                if (!empty($email) && !empty($password)) {
+                    $query = "INSERT INTO users (user_name, email, password, role) VALUES ('$user_name', '$email', '$password', '$role')";
+                    mysqli_query($con, $query);
 
-        header("Location: login.php");
-        die;
-    }
-    else{
-    echo "Invalid input";
+                    header("Location: login.php");
+                    die;
+                } else {
+                    echo "Invalid input";
+                }
+            } else {
+                echo "Wachtwoord moet minimaal 6 karakters bevatten.";
+            }
+        } else {
+            echo "Dit e-mailadres is al in gebruik.";
+        }
+    } else {
+        echo "Ongeldig e-mailadres";
     }
 }
 ?>
+
+
+
 
 
 <!DOCTYPE html>
@@ -158,8 +178,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
     <form method="post">
         <h3>Signup Here</h3>
 
-        <label for="username">Username</label>
-        <input type="text" placeholder="Email or Phone" name="user_name">
+        <label for="email">Email</label>
+        <input type="text" placeholder="Email" name="email">
 
         <label for="password">Password</label>
         <input type="password" placeholder="Password" name="password">
