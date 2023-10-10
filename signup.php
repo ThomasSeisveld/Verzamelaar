@@ -4,9 +4,7 @@ global $con;
 include ("PHP/connect.php");
 include ("PHP/functions.php");
 
-if ($_SERVER['REQUEST_METHOD'] == "POST")
-{
-    $user_name = $_POST['user_name'];
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $email = strtolower($_POST['email']); // Converteer naar kleine letters
     $password = $_POST['password'];
     $role = 0;
@@ -22,10 +20,39 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
             if (strlen($password) >= 6) {
                 // Als het een geldig e-mailadres is en niet al in gebruik is, en het wachtwoord voldoet aan de eis, doorgaan met de rest van de validatie
                 if (!empty($email) && !empty($password)) {
-                    $query = "INSERT INTO users (user_name, email, password, role) VALUES ('$user_name', '$email', '$password', '$role')";
-                    mysqli_query($con, $query);
+                    // Voeg de gebruiker toe aan de sessie
+                    $_SESSION['email'] = $email;
+                    $_SESSION['password'] = $password;
+                    $_SESSION['role'] = $role;
 
-                    header("Location: login.php");
+                    // Generate 4-digit code
+                    $code = rand(1000, 9999);
+
+
+                    // Send email
+                    $to = $email;
+                    $subject = "Welcome on board!";
+                    $message = "
+                    this is a no-reply email...
+                    use code: $code to activate your account
+                    
+                    if these are not your actions PLEASE contact us!
+                    email: 089560@gmail.com
+                    
+                    kind regards,
+                    Collections CSGO
+                    ";
+                    $headers = "From: Collections CSGO";
+                    mail($to, $subject, $message, $headers);
+
+                    // Save data in session
+                    $_SESSION['email'] = $email;
+                    $_SESSION['password'] = $password;
+                    $_SESSION["role"] = $role;
+                    $_SESSION['code'] = $code;
+
+                    // Redirect to code page
+                    header("Location: codepagina.php");
                     die;
                 } else {
                     echo "Invalid input";
@@ -41,9 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
     }
 }
 ?>
-
-
-
 
 
 <!DOCTYPE html>
