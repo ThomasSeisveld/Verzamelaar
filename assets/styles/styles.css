@@ -1,0 +1,22 @@
+.Rechts {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+}
+.Midden {
+    left: 50%;
+    right: 100px;
+}
+.section{
+    background-image: url('../images/login_request/pxfuel.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+#mooizo {
+    background-image: url('../images/login_request/b95e8765126337.60af5cc76e5df.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+    padding: 0;
+}

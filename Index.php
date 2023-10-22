@@ -3,7 +3,7 @@ session_start();
 global $con;
 include ("PHP/connect.php");
 include ("PHP/functions.php");
-$user_data = check_login($con);
+$user_name = $_SESSION["username"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,49 +11,73 @@ $user_data = check_login($con);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="">
+    <title>CSGO LibrarMarkts</title>
+    <link rel="stylesheet" href="assets/styles/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">CSGO LibrarMarkts</a>
+    <button class="navbar-toggler Midden" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
             </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                    Items
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Knifes</a>
+                    <a class="dropdown-item" href="#">Gloves</a>
+                    <a class="dropdown-item" href="#">Weapons</a>
+                    <a class="dropdown-item" href="#">Agents</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">All items</a>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav Rechts">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profile
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Account</a>
+                    <a class="dropdown-item" href="#">Inventory</a>
+                    <a class="dropdown-item" href="addItem.php">Add Items</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="PHP/Logout.php">Uitloggen</a>
                 </div>
             </li>
         </ul>
+
     </div>
 </nav>
-<header class="bg-primary py-5">
-    <div class="container px-4 px-lg-5 my-5">
+<header class="py-5">
+    <div id="mooizo">
+    <div  class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">CSGO Collections</h1>
+            <h1 class="display-4 fw-bolder">CSGO LibrarMarkts</h1>
             <p class="lead fw-normal text-white-50 mb-0">Verzamelaars</p>
         </div>
+    </div>
     </div>
 </header>
 <!-- Section-->
@@ -239,32 +263,33 @@ $user_data = check_login($con);
 
         </p>
     </div>
-    <div class="flexbox">
-        <?php
-        include "PHP/connect.php";
-        global $conn;
-        $query = "SELECT name, Discription, Image FROM Images";
-        $result = mysqli_query($conn, $query);
-
-        if (mysqli_num_rows($result) > 0) {
-
-            while ($row = mysqli_fetch_assoc($result)) {
-
-                ?>
-                <div1>
-                    <a href="gamedownload.php?id=game1"><img src="<?= $row["Image"]?>" alt="<?= $row["name"]?>" class="huis-img"></a>
-                    <h4 class="huis" style="color: #2AA2D6;"><?=$row["name"]?></h4>
-                    <p class="huis">2021</p>
-                    <p class="huis"><b>Free - Download</b></p>
-                </div1>
-                <?php
-            }
-        }
-        if (!$result) {
-            die("Databasefout: " . mysqli_error($conn));
-        }
-        ?>
-    </div>
+<!--    <div class="flexbox">-->
+<!--        --><?php
+//        include "PHP/connect.php";
+//        global $conn;
+//        $query = "SELECT name, Discription, Image FROM Images";
+//        $result = mysqli_query($conn, $query);
+//
+//        if (mysqli_num_rows($result) > 0) {
+//
+//            while ($row = mysqli_fetch_assoc($result)) {
+//
+//                ?>
+<!--                <div1>-->
+<!--                    <a href="gamedownload.php?id=game1"><img src="--><?php //= $row["Image"]?><!--" alt="--><?php //= $row["name"]?><!--" class="huis-img"></a>-->
+<!--                    <h4 class="huis" style="color: #2AA2D6;">--><?php //=$row["name"]?><!--</h4>-->
+<!--                    <p class="huis">2021</p>-->
+<!--                    <p class="huis"><b>Free - Download</b></p>-->
+<!--                </div1>-->
+<!--                --><?php
+//            }
+//        }
+//        if (!$result) {
+//            die("Databasefout: " . mysqli_error($conn));
+//        }
+//
+//        ?>
+<!--    </div>-->
 </div>
 
 
