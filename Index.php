@@ -5,26 +5,24 @@ include("PHP/connect.php");
 include("PHP/functions.php");
 $user_name = $_SESSION["username"];
 $category = isset($_GET['category']) ? $_GET['category'] : 'recent';
-$sortOption = isset($_GET['sort']) ? $_GET['sort'] : 'date'; // Voeg deze regel toe om de sorteeroptie op te halen
-
 // Standaard query voor recente items
-$query = "SELECT * FROM items ORDER BY $sortOption DESC, id DESC LIMIT 7";
+$query = "SELECT * FROM items ORDER BY date DESC, id DESC LIMIT 7";
 // Als een specifieke categorie is geselecteerd, pas de query aan
 switch ($category) {
-    case 'knives':
-        $query = "SELECT * FROM items WHERE type = 'knifes' ORDER BY $sortOption DESC, id DESC";
+    case 'knifes':
+        $query = "SELECT * FROM items WHERE type = 'knifes' ORDER BY date DESC, id DESC";
         break;
     case 'weapons':
-        $query = "SELECT * FROM items WHERE type = 'weapons' ORDER BY $sortOption DESC, id DESC";
+        $query = "SELECT * FROM items WHERE type = 'weapons' ORDER BY date DESC, id DESC";
         break;
     case 'gloves':
-        $query = "SELECT * FROM items WHERE type = 'gloves' ORDER BY $sortOption DESC, id DESC";
+        $query = "SELECT * FROM items WHERE type = 'gloves' ORDER BY date DESC, id DESC";
         break;
     case 'agents':
-        $query = "SELECT * FROM items WHERE type = 'agents' ORDER BY $sortOption DESC, id DESC";
+        $query = "SELECT * FROM items WHERE type = 'agents' ORDER BY date DESC, id DESC";
         break;
     case 'all':
-        $query = "SELECT * FROM items ORDER BY $sortOption DESC, id DESC";
+        $query = "SELECT * FROM items";
         break;
     default:
         // Voor het geval er een onbekende categorie is geselecteerd
@@ -37,8 +35,43 @@ $rows = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $rows[] = $row;
 }
-?>
+//andere methode:
+//session_start();
+//global $con;
+//include("PHP/connect.php");
+//include("PHP/functions.php");
+//$user_name = $_SESSION["username"];
+//$category = isset($_GET['category']) ? $_GET['category'] : 'recent';
+//
+//// Definieer de standaard sorteeropties
+//$sortOption = "date";
+//$sortOrder = "DESC";
+//
+//// Als er een sorteeroptie is opgegeven via de URL, gebruik deze
+//if(isset($_GET['sort'])) {
+//    $sortOption = $_GET['sort'];
+//}
+//
+//// Als er een sorteerorde is opgegeven via de URL, gebruik deze
+//if(isset($_GET['order'])) {
+//    $sortOrder = $_GET['order'];
+//}
+//
+//// Maak de query met variabelen
+//$query = "SELECT * FROM items";
+//if($category !== 'all') {
+//    $query .= " WHERE type = '$category'";
+//}
+//$query .= " ORDER BY $sortOption $sortOrder, id DESC";
+//
+//$result = mysqli_query($con, $query);
+//$rows = [];
+//
+//while ($row = mysqli_fetch_assoc($result)) {
+//    $rows[] = $row;
+//}
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,17 +106,13 @@ while ($row = mysqli_fetch_assoc($result)) {
                     Items
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="Index.php?category=knives">Knives</a>
+                    <a class="dropdown-item" href="Index.php?category=knifes">Knives</a>
                     <a class="dropdown-item" href="Index.php?category=weapons">Weapons</a>
                     <a class="dropdown-item" href="Index.php?category=gloves">Gloves</a>
                     <a class="dropdown-item" href="Index.php?category=agents">Agents</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="Index.php?category=all">All items</a>
                 </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
             </li>
         </ul>
 
@@ -115,29 +144,18 @@ while ($row = mysqli_fetch_assoc($result)) {
 <!-- Section-->
 
 <section class="py-5 bg-dark" >
-    <div class="container mt-4 text-center">
-        <div class="row">
-            <div class="col-md-4">
-                <label for="sortOptions" class="form-label">Sorteer op:</label>
-                <select class="form-select" id="sortOptions" onchange="location = this.value;">
-                    <option value="?sort=time">date</option>
-                    <option value="?sort=time">date</option>
-                    <option value="?sort=price">Price</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="container mt-4 text-center">
-        <div class="row">
-            <div class="col-md-4">
-                <label for="sortOptions" class="form-label">Sorteer op:</label>
-                <select class="form-select" id="sortOptions" onchange="location = this.value;">
-                    <option value="?sort=time">date</option>
-                    <option value="?sort=price">Price</option>
-                </select>
-            </div>
-        </div>
-    </div>
+<!--    <div class="container mt-4 text-center">-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-4">-->
+<!--                <label for="sortOptions" class="form-label">Sorteer op:</label>-->
+<!--                <select class="form-select" id="sortOptions">-->
+<!--                    <option value="Filter">Tijd</option>-->
+<!--                    <option value="date">Datum</option>-->
+<!--                    <option value="price">Prijs</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <?php
@@ -204,7 +222,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 
     <hr class="hr-bottom">
 </div>
-
 <script>
     function openModal(itemName, skin, type,  rarity, price, user) {
 
@@ -222,6 +239,5 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.2/js/bootstrap.min.js"></script>
-
 </body>
 </html>
