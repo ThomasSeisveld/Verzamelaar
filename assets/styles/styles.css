@@ -9,12 +9,13 @@
 }
 .section{
     background-image: url('../images/login_request/pxfuel.jpg');
+    background-repeat: repeat;
     min-height: 100%;
     background-position: center;
     background-size: cover;
 }
-#mooizo {
-    background-image: url('../images/login_request/b95e8765126337.60af5cc76e5df.jpg');
+.mooizo {
+    background-image: url('../images/login_request/wp2516222.jpg');
     min-height: 100%;
     background-position: center;
     background-size: cover;

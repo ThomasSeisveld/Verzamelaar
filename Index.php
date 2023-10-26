@@ -98,7 +98,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="notCreated.php">Collectors</a>
             </li>
 
             <li class="nav-item dropdown">
@@ -122,8 +122,8 @@ while ($row = mysqli_fetch_assoc($result)) {
                     Profile
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Account</a>
-                    <a class="dropdown-item" href="#">Inventory</a>
+                    <a class="dropdown-item" href="notCreated.php">Account</a>
+                    <a class="dropdown-item" href="notCreated.php">Inventory</a>
                     <a class="dropdown-item" href="addItem.php">Add Items</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="PHP/Logout.php">Uitloggen</a>
@@ -210,18 +210,18 @@ while ($row = mysqli_fetch_assoc($result)) {
     </div>
 </section>
 
-<div class="footer bg-dark">
-    <hr class="hr-top">
-    <img src="img/logo.png" id="logo-footer" alt="logo">
-    <div class="footer-text">
-        <a href="privacy.php?id=conditions">Conditions</a>
-        <a href="privacy.php?id=cookies">Cookies</a>
-        <a href="privacy.php?id=privacy">Privacy</a>
-        <a href="contact.html">Contact</a>
-    </div>
-
-    <hr class="hr-bottom">
-</div>
+<!--<div class="footer bg-dark">-->
+<!--    <hr class="hr-top">-->
+<!--    <img src="img/logo.png" id="logo-footer" alt="logo">-->
+<!--    <div class="footer-text">-->
+<!--        <a href="privacy.php?id=conditions">Conditions</a>-->
+<!--        <a href="privacy.php?id=cookies">Cookies</a>-->
+<!--        <a href="privacy.php?id=privacy">Privacy</a>-->
+<!--        <a href="contact.html">Contact</a>-->
+<!--    </div>-->
+<!---->
+<!--    <hr class="hr-bottom">-->
+<!--</div>-->
 <script>
     function openModal(itemName, skin, type,  rarity, price, user) {
 
