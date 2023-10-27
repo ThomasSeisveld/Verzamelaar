@@ -35,6 +35,12 @@ $rows = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $rows[] = $row;
 }
+
+
+
+
+
+
 //andere methode:
 //session_start();
 //global $con;
@@ -161,6 +167,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             <?php
             foreach ($rows as $row) {
                 $user = $row['user'];
+                $id = $row['id'];
                 $itemName = $row['itemName'];
                 $type = $row['type'];
                 $skin = $row['skin'];
@@ -181,7 +188,10 @@ while ($row = mysqli_fetch_assoc($result)) {
                         </div>
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#" onclick="openModal('<?php echo $itemName; ?>', '<?php echo $skin; ?>', '<?php echo $type; ?>', '<?php echo $rarity; ?>', '<?php echo $price; ?>', '<?php echo $user; ?>')">View options</a></div>
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#" onclick="onclick()">Purchase</a></div>
+                            <br>
+                            <div class="text-center">
+                                <a href="bieden.php?id=<?php echo $id?>"><button class="btn btn-outline-dark mt-auto">Purchase</button></a>
+                            </div>
                         </div>
                     </div>
                 </div>
