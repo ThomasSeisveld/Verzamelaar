@@ -4,7 +4,7 @@ global $con;
 include("PHP/connect.php");
 
 $id = $_GET['id'];
-
+$user_name = $_SESSION["username"];
 $result = $con->query("SELECT * FROM items WHERE id = '$id'");
 $row = $result->fetch_array();
 
@@ -17,6 +17,11 @@ $rarity = $row['rarity'];
 $price = $row['price'];
 $picture = $row['picture'];
 
+$result = $con->query("SELECT * FROM users WHERE user_name = '$user'");
+$row = $result->fetch_array();
+
+$email = $row['email'];
+
 
 if (isset($_POST['submit'])) {
     $itemName = $row['itemName'];
@@ -25,8 +30,22 @@ if (isset($_POST['submit'])) {
     $date = date('Y-m-d H:i:s');
     $query = "INSERT INTO orders (itemName, price, message, date) VALUES ('$itemName', '$price', '$message', '$date')";
     mysqli_query($con, $query);
-}
+    if (!empty($itemName) && !empty($price)) {
 
+        $to = $email;
+        $subject = "New bid";
+        $message = "
+this is a no-reply email...
+There is a new bid on $itemName by $user_name
+
+Price:
+$price
+";
+        $headers = "From: Collections CSGO";
+        mail($to, $subject, $message, $headers);
+        die;
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">

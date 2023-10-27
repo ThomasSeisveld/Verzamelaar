@@ -39,8 +39,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 
 
-
-
 //andere methode:
 //session_start();
 //global $con;
