@@ -89,9 +89,10 @@ if(isset($_POST['submitItem'])) {
 
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
     <form method="POST">
+
+        <h3>Add to <?php echo $user_name; ?>'s inventory</h3>
         <label for="Item_Name">Name</label>
         <input type="text" placeholder="bijv.. AK" name="ItemName" required>
-        <h3>Add to <?php echo $user_name; ?>'s inventory</h3>
         <label for="type">Type</label>
         <select class="select" name="type" required>
             <option value="">Selecteer een type</option>
