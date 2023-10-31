@@ -7,15 +7,15 @@ $user_name = $_SESSION["username"];
 
 if(isset($_POST['submitItem'])) {
     $user = $_SESSION["username"];
-    $ItemName = $_SESSION["ItemName"];
+    $itemName = $_SESSION["itemName"];
     $type = $_POST['type'];
     $skin = $_POST['skin'];
     $rarity = $_POST['rarity'];
     $price = $_POST['price'];
     $picture = $_FILES['picture']['name'];
 
-        $query = "INSERT INTO items (ItemName, user, type, skin, rarity, price, picture) 
-                  VALUES ('$ItemName', '$user', '$type', '$skin', '$rarity', '$price', '$picture')";
+        $query = "INSERT INTO items (itemName, user, type, skin, rarity, price, picture) 
+                  VALUES ('$itemName', '$user', '$type', '$skin', '$rarity', '$price', '$picture')";
 
         if(mysqli_query($con, $query)) {
           echo "succes";
@@ -41,7 +41,7 @@ if(isset($_POST['submitItem'])) {
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var form = document.querySelector('form');
-        var ItemNameSelect = document.querySelector('[name="ItemName"]');
+        var itemNameInput = document.querySelector('[name="itemName"]');
         var typeSelect = document.querySelector('[name="type"]');
         var skinInput = document.querySelector('[name="skin"]');
         var raritySelect = document.querySelector('[name="rarity"]');
@@ -60,7 +60,7 @@ if(isset($_POST['submitItem'])) {
         });
 
         form.addEventListener('submit', function(event) {
-            if (ItemNameSelect.value === '' || typeSelect.value === '' || skinInput.value === '' || raritySelect.value === '' || priceInput.value === '' || pictureInput.value === '') {
+            if (itemNameInput.value === '' || typeSelect.value === '' || skinInput.value === '' || raritySelect.value === '' || priceInput.value === '' || pictureInput.value === '') {
                 alert("Vul alle velden in.");
                 event.preventDefault(); // Voorkom dat het formulier wordt verzonden
             } else if (priceInput.value < 0 || priceInput.value > 1000000) {
@@ -70,13 +70,13 @@ if(isset($_POST['submitItem'])) {
         });
 
         function checkInputs() {
-            if (ItemNameSelect.value !== '' && typeSelect.value !== '' && skinInput.value !== '' && raritySelect.value !== '' && priceInput.value !== '' && pictureInput.value !== '') {
+            if (itemNameInput.value !== '' && typeSelect.value !== '' && skinInput.value !== '' && raritySelect.value !== '' && priceInput.value !== '' && pictureInput.value !== '') {
                 submitButton.disabled = false;
             } else {
                 submitButton.disabled = true;
             }
         }
-        ItemNameSelect.addEventListener('input', checkInputs);
+        itemNameInput.addEventListener('input', checkInputs);
         typeSelect.addEventListener('input', checkInputs);
         skinInput.addEventListener('input', checkInputs);
         raritySelect.addEventListener('input', checkInputs);
@@ -91,8 +91,8 @@ if(isset($_POST['submitItem'])) {
     <form method="POST">
 
         <h3>Add to <?php echo $user_name; ?>'s inventory</h3>
-        <label for="Item_Name">Name</label>
-        <input type="text" placeholder="bijv.. AK" name="ItemName" required>
+        <label for="itemName">Name</label>
+        <input type="text" placeholder="bijv.. AK" name="itemName" required>
         <label for="type">Type</label>
         <select class="select" name="type" required>
             <option value="">Selecteer een type</option>
